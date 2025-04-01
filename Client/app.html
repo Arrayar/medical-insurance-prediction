@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medical Insurance Cost Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='app.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Medical Insurance Cost Prediction</h1>
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label>Age</label>
+                <input type="number" name="age" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Sex</label>
+                <select name="sex" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>BMI</label>
+                <input type="number" step="0.1" name="bmi" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Number of Children</label>
+                <input type="number" name="children" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Smoker</label>
+                <select name="smoker" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Region</label>
+                <select name="region" required>
+                    <option value="southeast">Southeast</option>
+                    <option value="southwest">Southwest</option>
+                    <option value="northeast">Northeast</option>
+                    <option value="northwest">Northwest</option>
+                </select>
+            </div>
+            
+            <button type="submit">Predict Insurance Cost</button>
+        </form>
+        
+        {% if prediction_text %}
+        <div class="prediction-result">
+            <h3>{{ prediction_text }}</h3>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
